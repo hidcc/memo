@@ -1,0 +1,12 @@
+# node_modules フォルダを無視
+node_modules/
+
+# SQLiteのデータベースファイルを無視
+*.sqlite3
+
+# ログファイルを無視
+*.log
+
+# OSごとの不要ファイル
+.DS_Store
+Thumbs.db
