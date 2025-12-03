@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>MEMO</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/send_url.js"></script>
+  </head>
+  <body>
+    <header>
+      <a href="/" class="header-logo">MEMO</a>
+    </header>
+    <div class="container">
+      <div class="container-header">
+        <h1>メモリスト</h1>
+        <a href="/new" class="new-button">+ 新規作成</a>
+      </div>
+      <div class="index-table-wrapper">
+        <div class="table-head">
+          <span class="id-column">ID</span>
+          <span style="margin-left: 10px;">タイトル</span>
+          <span style="margin-left: 120px;">日付</span>
+          <span style="margin-left: 150px;">内容</span>
+        </div>
+        <ul class="table-body">
+          <% items.forEach((item, index) => { %>
+            <li>
+              <div class="item-data">
+                <span class="id-column"><%= index + 1 %></span>
+                <span class="name-column"><%= item.name %></span>
+                <span class="created_at-column"><%= item.created_at %></span>
+                <span class="description-column"><%= item.description %></span>
+              </div>
+              <div class="item-menu">
+                <form action="/delete/<%= item.id %>" method="post">
+                    <input type="submit" value="削除">
+                </form>
+                <a href="/edit/<%=item.id%>">編集</a>
+              </div>
+            </li>
+          <% }) %>
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>
