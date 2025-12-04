@@ -311,6 +311,13 @@ header {
   font-size: 14px;
   color: #8491a5;
 }
+.content-label {
+  font-size: 14px;
+  color: #8491a5;
+  text-align:center;
+  float:left;
+  margin-top: 8px;
+}
 
 .item-form-wrapper input[type="text"] {
   width: 100%;

@@ -44,10 +44,14 @@ app.get("/new",(req,res) => {
   res.render("new.ejs")
 });
 
+
 app.post('/create', (req, res) => {
+  const name = req.body.itemName;
+  const description = req.body.description;  // フォームのname属性を "description" にしておく
+
   db.run(
-    "INSERT INTO items(name) VALUES(?)",
-    [req.body.itemName],
+    "INSERT INTO items(name, description) VALUES(?, ?)",
+    [name, description],
     function (error) {
       if (error) {
         console.error("INSERTエラー:", error.message);
@@ -57,6 +61,7 @@ app.post('/create', (req, res) => {
     }
   );
 });
+
 
 app.post('/delete/:id', (req, res) => {
   const id = req.params.id;
@@ -94,16 +99,19 @@ app.get('/edit/:id', (req, res) => {
 app.post('/update/:id', (req, res) => {
   const id = req.params.id;
   const name = req.body.itemName;
+  const description = req.body.description;
 
-  db.run("UPDATE items SET name = ? WHERE id = ?", [name, id], function(err) {
-    if (err) {
-      console.error("更新中にエラーが発生しました:", err.message);
-      res.status(500).send("更新に失敗しました");
-      return;
+  db.run("UPDATE items SET name = ?, description = ? WHERE id = ?", 
+    [name, description, id], 
+    function(err) {
+      if (err) {
+        console.error("更新中にエラーが発生しました:", err.message);
+        res.status(500).send("更新に失敗しました");
+        return;
+      }
+      res.redirect("/index");
     }
-
-    res.redirect("/index");
-  });
+  );
 });
 
 
