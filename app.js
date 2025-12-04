@@ -1,3 +1,10 @@
+require('dotenv').config();
+
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+  console.log(`Server running on port ${port}`);
+});
+
 const express = require('express');
 const sqlite3 = require('sqlite3').verbose();
 const app = express();
